@@ -35,7 +35,7 @@ function Bars({bars}){
         <div className="title">Graphs</div>
         {bars.map(bar => {
             return( 
-                <div key={bar.key} className="bar" style={{width: bar.currentValue*createMultiplicator(bars) + "px", top:position(bars, bar)*100-100}} >
+                <div key={bar.key} className="bar" style={{width: bar.currentValue*createMultiplicator(bars) + "px", top:position(bars, bar)*100, backgroundColor:bar.color}} >
                     <p className="barTitle"> {bar.name} </p> 
                     <p className="counter">{parseInt(bar.currentValue)}</p>
                 </div>

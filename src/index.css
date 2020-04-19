@@ -139,7 +139,7 @@ input{
 
   width: 32px;
   height: 30px;
-  background: linear-gradient(152.28deg, #FF0000 17.96%, #950000 99.99%, #DA0000 100%);
+  background: linear-gradient(152.28deg, rgba(0, 0, 0, 0.233) 17.96%, #ffffff26 100%);
   box-shadow: -3px -3px 4px rgba(255, 255, 255, 0.6), 3px 3px 4px rgba(0, 0, 0, 0.3), inset -2px -2px 4px rgba(255, 255, 255, 0.25), inset 2px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 53px;
 }
@@ -223,11 +223,11 @@ cursor:w-resize;
 
 
 .bar{
- display: flex;
+  display: flex;
   position: absolute;
   background: red;
   margin-left: 6rem;
-  height: 50px;
+  height: 60px;
 
   transition: top 1s;
 }
@@ -252,6 +252,9 @@ cursor:w-resize;
   
 }
 #counter{
+  position: absolute;
+  top:2rem;
+  right:3rem;
   font-size: 2rem;
 
 }

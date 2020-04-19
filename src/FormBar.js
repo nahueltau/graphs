@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 
 function FormBar (props){
     let scrollTemp;
     let _scroll =false;
-
+    let [names, setNames] = useState([]);
+    let [colors, setColors] = useState([]);
     let handleMouseMove = (e)=>{
        if(_scroll){
         
@@ -53,18 +54,18 @@ function FormBar (props){
             let bars = [];
                 for (let i = 0; i < props.barNumber; i++) {
                     bars.push(<div key={i+1} className="form-card">
-                    
-                                <div className="card-title">bar {i+1}</div>
+                               
+                                <div className="card-title">{names[i] || "Bar "+(i+1)}</div>
                                 <div className="card-name">
-                                    <div>Name</div> <input type="text"  id={i.toString()+"n"} onChange={(e)=>{props.handleConfig(e)}}/>
+                                    <div>Name</div> <input type="text"  id={i.toString()+"n"} onChange={(e)=>{props.handleConfig(e);names[i]=e.target.value ;setNames(names);}}/>
                                 </div>
                                 <div className="card-color">
                                     <div>Color</div> 
                                     <div className="card-color-input">
-                                        <input type="text" />
-                                        <div className="color-circle-out"><div className="color-circle-in"></div></div>
+                                        <input type="text" id={i.toString()+"c"} onChange={(e)=>{props.handleConfig(e);colors[i]=e.target.value ;setColors(colors);}}/>
+                                        <div className="color-circle-out"><div className="color-circle-in" style={{backgroundColor:colors[i]}}></div></div>
                                     </div>
-                                   
+                                 
                                 </div>
                                 <div className="card-stop">
                                     <div>Stops</div> 

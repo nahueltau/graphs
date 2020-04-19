@@ -18,6 +18,7 @@ class Form extends React.Component{
         let newBars = [...this.state.Bars];
         let name;
         let stops;
+        let color;
         let n = e.target.id[1];
         
         let o = e.target.id[0];
@@ -36,7 +37,11 @@ class Form extends React.Component{
             barNumber = e.target.value;
             
         }      
-            
+        if(n==="c"){
+            color = e.target.value;
+            newBars[o] = {...newBars[o],color:color};
+           
+        }    
         
         this.setState(
             { Bars: newBars,barNumber:barNumber}
