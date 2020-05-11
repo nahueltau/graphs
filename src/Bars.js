@@ -29,18 +29,29 @@ function Bars({bars}){
         }
         return pos;
     }
+    function Counter(props){
+        return(
+            <p className="counter">{props.children}</p>
+        )
+    }
+    function BarTitle(props){
+        return(
+            <p className="barTitle"> {props.children} </p> 
+        )
+        
+    }
     
     return(
         <div className="barContainer" style={{height:(bars.length)*100+"px"}}>
-        <div className="title">Graphs</div>
+       
         {bars.map(bar => {
             return( 
                 <div key={bar.key} className="bar" style={{width: bar.currentValue*createMultiplicator(bars) + "px", top:position(bars, bar)*100, backgroundColor:bar.color}} >
-                    <p className="barTitle"> {bar.name} </p> 
-                    <p className="counter">{parseInt(bar.currentValue)}</p>
+                    <BarTitle>{bar.name}</BarTitle>
+                    <Counter>{parseInt(bar.currentValue)}</Counter> 
                 </div>
                 )
-                }
+                } 
             )}
 
         </div>
