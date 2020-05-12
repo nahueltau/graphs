@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import Iball from "./Iball"
 
 function FormBar (props){
     let scrollTemp;
@@ -278,7 +278,7 @@ function FormBar (props){
                 <span>Bars</span>
                     <div className="circle-button">-</div>
                     <input type="text"  id={"xb"} onChange={(e)=>{props.handleConfig(e)}}/>
-                    <div className="circle-button">+</div>
+                    <div className="circle-button">+</div><Iball>Input the number of bars</Iball>
                 </div>
             </div>
         </div>
