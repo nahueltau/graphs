@@ -260,14 +260,15 @@ cursor:w-resize;
 }
 
 .i-ball{
-  
+  display: flex;
   position: relative;
   bottom: .8rem;
   text-align: center;
   font-family: serif;
-  display: flex;
-  cursor: default;
+  align-items: center;
   justify-content: center;
+  cursor: default;
+  
   font-style: italic;
   font-size: .7rem;
   color: rgb(57, 57, 255);

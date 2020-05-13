@@ -5,7 +5,7 @@ function Iball(props){
 
     return(
         <div className="i-ball">
-            i <div className="i-ball-content">{props.children}</div>
+        i  <div className="i-ball-content">{props.children}</div>
         </div>
     )    
 }
