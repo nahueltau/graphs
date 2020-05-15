@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import Iball from "./Iball"
-import BarConfigCard from "./BarConfigCard"
-import ScrollElement from "./ScrollElement"
-import InputWithButtons from "./InputWithButtons"
-import {demo, autoConfig, autoConfig2} from "./autoConfig"
+import Iball from "./components/Iball"
+import BarConfigCard from "./components/BarConfigCard"
+import ScrollElement from "./components/ScrollElement"
+import InputWithButtons from "./components/InputWithButtons"
+import {autoConfig} from "./autoConfig"
 
 function FormBar (props){
     

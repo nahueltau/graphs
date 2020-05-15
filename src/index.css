@@ -52,6 +52,9 @@ input{
   width: 89px;
   height: 34px;
 }
+input::placeholder{
+  color: black;
+}
 .nav-form{
   width: 550px;
   display:grid;

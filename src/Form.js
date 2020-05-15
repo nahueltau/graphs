@@ -34,7 +34,7 @@ class Form extends React.Component{
             newBars[o] = {...newBars[o], value:[...numberOfPairs()]} 
         }
         if(n==="b"){
-            barNumber = e.target.valueAsNumber;
+            barNumber = e.target.value;
             
         }      
         if(n==="c"){
