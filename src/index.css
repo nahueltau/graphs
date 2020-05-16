@@ -21,7 +21,7 @@ button{
   font-family: -apple-system, BlinkMacSystemFont,'Roboto',  'Segoe UI', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-   margin:  2rem auto 0rem auto;
+   
   font-size: 1rem;
   font-weight: bold;
   width: 180px;
@@ -52,8 +52,11 @@ input{
   width: 89px;
   height: 34px;
 }
+input::placeholder{
+  color: black;
+}
 .nav-form{
-  width: 500px;
+  width: 550px;
   display:grid;
   grid-template-columns: auto auto;
   margin-top: 1rem;
@@ -65,9 +68,12 @@ input{
   margin: 0rem 1rem 0rem 3rem;
 }
 .nav-form-buttons{
+  
   display:grid;
   grid-template-rows: auto auto;
-  margin: 0rem 1rem 0rem 3rem;
+  justify-content: center;
+  align-items: end;
+  
 }
 .circle-button{
   margin: .5rem;
@@ -267,8 +273,8 @@ cursor:w-resize;
   font-family: serif;
   align-items: center;
   justify-content: center;
-  cursor: default;
-  
+  cursor: default; 
+  margin: .3rem;
   font-style: italic;
   font-size: .7rem;
   color: rgb(57, 57, 255);
@@ -289,8 +295,13 @@ cursor:w-resize;
   border: 1px solid gray;
   font-size: .8rem;
   padding: .5rem;
-  width: 5rem;
+  width: 8rem;
 }
 .i-ball:hover > .i-ball-content{
   display: block;
+}
+.flex-row{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
 }

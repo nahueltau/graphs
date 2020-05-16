@@ -1,5 +1,9 @@
 import React from "react";
-import FormBar from "./FormBar"
+import Iball from "./components/Iball"
+import BarConfigCard from "./components/BarConfigCard"
+import ScrollElement from "./components/ScrollElement"
+import InputWithButtons from "./components/InputWithButtons"
+import {autoConfig} from "./autoConfig"
 
 class Form extends React.Component{
     constructor(props){
@@ -56,21 +60,68 @@ class Form extends React.Component{
         let o = e.target.id[0];
        
          newBars[o].value[n][m] = parseInt(e.target.value);
+  
         
         this.setState(
            { Bars: newBars}
         )
         
       }
+   
  
     render(){
+        
+        let cardsContainerWrapper;
+        let barsCardContainer = [];
+            for (let i = 0; i < this.state.barNumber; i++) {
+                barsCardContainer.push(<BarConfigCard barID={i} handleConfig={this.handleConfig} handleInput={this.handleInput} Bars={this.state.Bars} key={i+1}></BarConfigCard>) 
+            }
+            
+            if(barsCardContainer.length!==0){
+               cardsContainerWrapper=<div className="config">
+                                <ScrollElement></ScrollElement>
+                                <div className="flex-container" id="Scroll">{barsCardContainer}</div>
+                          </div>;     
+            }
+
 
         return(
                 
             <div> 
                
-               
-                <FormBar barNumber={this.state.barNumber} Bars={this.state.Bars} startAnim={this.props.startAnim} handleInput={this.handleInput} handleConfig={this.handleConfig}/>
+               <div className="nav-form">
+                    <div className="nav-form-left">
+                        <div className="title">Graphs</div>
+                        <div >
+                            <div className="flex-row">
+                            <InputWithButtons ident={"xb"} handle={this.handleConfig} title={"Bars"}></InputWithButtons>
+                        
+                            <Iball>Input the number of bars</Iball>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div className="nav-form-buttons">
+                        <div className="flex-row">
+                            <button className="start-button" onClick={()=>{this.props.startAnim(this.state.Bars)}}>Start</button>
+                            <Iball>Start the animation</Iball>
+                        </div>
+                        <div className="flex-row">
+                            <button className="autoconfig-button" onClick={()=>{autoConfig(this.handleConfig , this.handleInput)}}>Autoconfig</button>
+                            <Iball>Click here to automatically get demo values</Iball>
+                        </div>
+                    
+                    </div>
+        
+            </div>
+      
+       
+      
+        
+                
+                    {cardsContainerWrapper}
+            
+                
              
               
 

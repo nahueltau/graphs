@@ -38,9 +38,9 @@ const demo=
             }]
         
         
-    let autoConfig2 = (props)=>{
+    let autoConfig2 = (handleConfig,handleInput)=>{
         let event = new Event('build');
-        document.getElementById("xb").addEventListener('build',(e)=>{props.handleConfig(e)});
+        document.getElementById("xb").addEventListener('build',(e)=>{handleConfig(e)});
         document.getElementById("xb").value = demo.length;
         document.getElementById("xb").dispatchEvent(event);
         setTimeout(()=>{
@@ -48,10 +48,10 @@ const demo=
             for(let i =0;i<demo.length;i++){
                 let u = i + "n";
                 let v = i + "s";
-                document.getElementById(u).addEventListener('build',(e)=>{props.handleConfig(e)});
+                document.getElementById(u).addEventListener('build',(e)=>{handleConfig(e)});
                 document.getElementById(u).value = demo[i].name;
                 document.getElementById(u).dispatchEvent(event);
-                document.getElementById(v).addEventListener('build',(e)=>{props.handleConfig(e)});
+                document.getElementById(v).addEventListener('build',(e)=>{handleConfig(e)});
                 document.getElementById(v).value = demo[i].values.length/5;
                 document.getElementById(v).dispatchEvent(event);
             }
@@ -62,10 +62,10 @@ const demo=
                 for(let e = 0; e<demo[i].values.length;e+5){
                     let u = i.toString()+e.toString()+"w";
                     let v = i.toString()+e.toString()+"t";
-                    document.getElementById(u).addEventListener('build',(e)=>{props.handleInput(e)});
+                    document.getElementById(u).addEventListener('build',(e)=>{handleInput(e)});
                     document.getElementById(u).value = demo[i].values[e];
                     document.getElementById(u).dispatchEvent(event);
-                    document.getElementById(v).addEventListener('build',(e)=>{props.handleInput(e)});
+                    document.getElementById(v).addEventListener('build',(e)=>{handleInput(e)});
                     document.getElementById(v).value = e;
                     document.getElementById(v).dispatchEvent(event);
                 }
@@ -74,87 +74,54 @@ const demo=
 
         },20)
     }
-    let autoConfig = (props)=>{
+  
+    let autoConfig = (handleConfig,handleInput)=>{
         let event = new Event('build');
-        document.getElementById("xb").addEventListener('build',(e)=>{props.handleConfig(e)});
-        document.getElementById("xb").value = 3;
-        document.getElementById("xb").dispatchEvent(event);
-        setTimeout(()=>{
-            let event = new Event('build');
-            document.getElementById("0n").addEventListener('build',(e)=>{props.handleConfig(e)});
-            document.getElementById("0n").value = "Argentina";
-            document.getElementById("0n").dispatchEvent(event);
-            document.getElementById("1n").addEventListener('build',(e)=>{props.handleConfig(e)});
-            document.getElementById("1n").value = "Brasil";
-            document.getElementById("1n").dispatchEvent(event);
-            document.getElementById("2n").addEventListener('build',(e)=>{props.handleConfig(e)});
-            document.getElementById("2n").value = "Uruguay";
-            document.getElementById("2n").dispatchEvent(event);
-            document.getElementById("0s").addEventListener('build',(e)=>{props.handleConfig(e)});
-            document.getElementById("0s").value = 3;
-            document.getElementById("0s").dispatchEvent(event);
-            document.getElementById("1s").addEventListener('build',(e)=>{props.handleConfig(e)});
-            document.getElementById("1s").value = 2;
-            document.getElementById("1s").dispatchEvent(event);
-            document.getElementById("2s").addEventListener('build',(e)=>{props.handleConfig(e)});
-            document.getElementById("2s").value = 3;
-            document.getElementById("2s").dispatchEvent(event);
-        },20)
-        setTimeout(()=>{
-            let event = new Event('build');
-            document.getElementById("00w").addEventListener('build',(e)=>{props.handleInput(e)});
-            document.getElementById("00w").value = 500;
-            document.getElementById("00w").dispatchEvent(event);
-            document.getElementById("00t").addEventListener('build',(e)=>{props.handleInput(e)});
-            document.getElementById("00t").value =50;
-            document.getElementById("00t").dispatchEvent(event);
-            document.getElementById("01w").addEventListener('build',(e)=>{props.handleInput(e)});
-            document.getElementById("01w").value = 1000;
-            document.getElementById("01w").dispatchEvent(event);
-            document.getElementById("01t").addEventListener('build',(e)=>{props.handleInput(e)});
-            document.getElementById("01t").value =80;
-            document.getElementById("01t").dispatchEvent(event);
-            document.getElementById("02w").addEventListener('build',(e)=>{props.handleInput(e)});
-            document.getElementById("02w").value =2000;
-            document.getElementById("02w").dispatchEvent(event);
-            document.getElementById("02t").addEventListener('build',(e)=>{props.handleInput(e)});
-            document.getElementById("02t").value =150;
-            document.getElementById("02t").dispatchEvent(event);
+        let eventDispatcher = (id,value,handler,event)=>{
+            document.getElementById(id).addEventListener('build',(e)=>{handler(e)});
+            document.getElementById(id).value = value;
+            document.getElementById(id).dispatchEvent(event);
+          }
+        eventDispatcher("xb",3,handleConfig,event);
             
-            document.getElementById("10w").addEventListener('build',(e)=>{props.handleInput(e)});
-            document.getElementById("10w").value = 400;
-            document.getElementById("10w").dispatchEvent(event);
-            document.getElementById("10t").addEventListener('build',(e)=>{props.handleInput(e)});
-            document.getElementById("10t").value =50;
-            document.getElementById("10t").dispatchEvent(event);
-            document.getElementById("11w").addEventListener('build',(e)=>{props.handleInput(e)});
-            document.getElementById("11w").value = 2500;
-            document.getElementById("11w").dispatchEvent(event);
-            document.getElementById("11t").addEventListener('build',(e)=>{props.handleInput(e)});
-            document.getElementById("11t").value =160;
-            document.getElementById("11t").dispatchEvent(event);
+        setTimeout(()=>{
+            
+                eventDispatcher("0n","Argentina",handleConfig,event);
+                eventDispatcher("1n","Brasil",handleConfig,event);
+                eventDispatcher("2n","Uruguay",handleConfig,event);
+                eventDispatcher("0s",3,handleConfig,event);
+                eventDispatcher("1s",2,handleConfig,event);
+                eventDispatcher("2s",3,handleConfig,event);
+                eventDispatcher("0c","Indigo",handleConfig,event);
+                eventDispatcher("1c","Gold",handleConfig,event);
+                eventDispatcher("2c","Pink",handleConfig,event);
+                document.querySelectorAll(".color-circle-in")[0].style="background-color:indigo";
+                document.querySelectorAll(".color-circle-in")[1].style="background-color:gold";
+                document.querySelectorAll(".color-circle-in")[2].style="background-color:pink";
+            },20)
+        setTimeout(()=>{
+            eventDispatcher("00w",500,handleInput,event);
+            eventDispatcher("00t",50,handleInput,event);
+            eventDispatcher("01w",1000,handleInput,event);
+            eventDispatcher("01t",80,handleInput,event);
+            eventDispatcher("02w",2000,handleInput,event);
+            eventDispatcher("02t",150,handleInput,event);
+            
+            eventDispatcher("10w",400,handleInput,event);
+            eventDispatcher("10t",50,handleInput,event);
+            eventDispatcher("11w",2500,handleInput,event);
+            eventDispatcher("11t",160,handleInput,event);
 
-            document.getElementById("20w").addEventListener('build',(e)=>{props.handleInput(e)});
-            document.getElementById("20w").value = 200;
-            document.getElementById("20w").dispatchEvent(event);
-            document.getElementById("20t").addEventListener('build',(e)=>{props.handleInput(e)});
-            document.getElementById("20t").value =50;
-            document.getElementById("20t").dispatchEvent(event);
-            document.getElementById("21w").addEventListener('build',(e)=>{props.handleInput(e)});
-            document.getElementById("21w").value = 1000;
-            document.getElementById("21w").dispatchEvent(event);
-            document.getElementById("21t").addEventListener('build',(e)=>{props.handleInput(e)});
-            document.getElementById("21t").value =120;
-            document.getElementById("21t").dispatchEvent(event);
-            document.getElementById("22w").addEventListener('build',(e)=>{props.handleInput(e)});
-            document.getElementById("22w").value = 2100;
-            document.getElementById("22w").dispatchEvent(event);
-            document.getElementById("22t").addEventListener('build',(e)=>{props.handleInput(e)});
-            document.getElementById("22t").value =160;
-            document.getElementById("22t").dispatchEvent(event);
+            eventDispatcher("20w",200,handleInput,event);
+            eventDispatcher("20t",50,handleInput,event);
+            eventDispatcher("21w",1000,handleInput,event);
+            eventDispatcher("21t",120,handleInput,event);
+            eventDispatcher("22w",2100,handleInput,event);
+            eventDispatcher("22t",160,handleInput,event);
+
         },20)
        
     }    
 
-    export {demo, autoConfig,autoConfig2};
+    export {demo, autoConfig, autoConfig2};
     
