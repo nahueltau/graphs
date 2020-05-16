@@ -26,22 +26,43 @@ class Form extends React.Component{
         let n = e.target.id[1];
         
         let o = e.target.id[0];
-        if(n==="n"){
+        if(n==="n"){//NAME
             name = e.target.value;
             newBars[o] = {...newBars[o],name:name};
         }
-        if(n==="s"){
+        if(n==="s"){//STOPS
             stops = e.target.value;
             newBars[o] = {...newBars[o],stopNumber:parseInt(stops)};
-            let numberOfPairs = ()=>{let array=[];let p =0; while( p <parseInt(stops)){array.push({t:null,w:null});p++}return array;};
+            let numberOfPairs = ()=>{
+                let array=[]; 
+                if(newBars[o].value){
+                    array = [...newBars[o].value];
+                    if(array.length<parseInt(stops)){
+                        let p =0;
+                        while( p <(parseInt(stops)-array.length)){array.push({t:null,w:null});p++}
+                       
+                    }
+                    if(array.length>parseInt(stops)){
+                        let p =0;
+                        while( p <(array.length-parseInt(stops))){array.pop(1);p++}
+                       
+                    }
+                }
+                    else{//MAINLY FOR AUTOCOMPLETE
+                        let p =0;
+                        while( p <parseInt(stops)){array.push({t:null,w:null});p++}
+                    }
+
+                return array;
+            };
             
             newBars[o] = {...newBars[o], value:[...numberOfPairs()]} 
         }
-        if(n==="b"){
+        if(n==="b"){//BAR NUMBER
             barNumber = e.target.value;
             
         }      
-        if(n==="c"){
+        if(n==="c"){//COLOR
             color = e.target.value;
             newBars[o] = {...newBars[o],color:color};
            

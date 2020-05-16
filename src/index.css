@@ -1,4 +1,6 @@
+
 body {
+  user-select: none;
   margin: 0;
   background-color: #EEE;
   color: #474747;
@@ -52,6 +54,9 @@ input{
   width: 89px;
   height: 34px;
 }
+input:focus, textarea:focus, select:focus, button:focus{
+  outline: none;
+}
 input::placeholder{
   color: black;
 }
@@ -87,7 +92,12 @@ input::placeholder{
   align-items: center;
   justify-content: space-around;
 }
+.input-with-buttons input{
+  cursor: default;
+
+}
 .input-with-buttons{
+  user-select: none;
   display:flex;
   align-items: center;
   justify-content: space-around;

@@ -49,8 +49,11 @@ class App extends React.Component {
       }
 
       startAnim = (barsFromForm) =>{
+            //Prevent animation if not enough data is provided
+            console.log(barsFromForm);
+            if(barsFromForm[0]===null){console.log("Not enough data to perform animation");return}
             //For some reason this array converts to an object
-            //So I had to reverse it to an array 
+            //So I had to reverse it to an array
             let tempBars = Object.entries(barsFromForm).map(a=>a[1]);
             let barId = 0;
             let tempMaxValue = 0;
