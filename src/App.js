@@ -50,8 +50,38 @@ class App extends React.Component {
 
       startAnim = (barsFromForm) =>{
             //Prevent animation if not enough data is provided
-            console.log(barsFromForm);
-            if(barsFromForm[0]===null){console.log("Not enough data to perform animation");return}
+                let preventAnimation = false;
+               
+                if(!preventAnimation){
+                  let inputs = document.getElementsByClassName("small-number-input");
+                  for(let i = 0;i<inputs.length;i++){
+                    if(inputs[i].value===""||inputs[i].value==="0"){
+                      preventAnimation = true;
+                    }
+                  }
+                }
+                if(!preventAnimation){
+                  let inputs = document.getElementsByClassName("percent-input");
+                  for(let i = 0;i<inputs.length;i++){
+                    if(inputs[i].value===""){
+                      preventAnimation = true;
+                    }
+                  }
+                }
+                if(!preventAnimation){
+                  let inputs = document.getElementsByClassName("number-input");
+                  for(let i = 0;i<inputs.length;i++){
+                    if(inputs[i].value===""){
+                      preventAnimation = true;
+                    }
+                  }
+                }
+                if(preventAnimation){
+                  document.getElementById("start-error-message").style.visibility="visible";
+                  document.querySelector(".nav-form").addEventListener("mousemove",()=>{
+                    document.getElementById("start-error-message").style.visibility="hidden"});
+                    preventAnimation = false;
+                    return;}
             //For some reason this array converts to an object
             //So I had to reverse it to an array
             let tempBars = Object.entries(barsFromForm).map(a=>a[1]);

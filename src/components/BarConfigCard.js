@@ -2,6 +2,9 @@ import React from 'react';
 import InputWithButtons from "./InputWithButtons"
 import ColorInput from "./ColorInput"
 import BarNameInput from './BarNameInput'
+import PercentInput from './PercentInput'
+import NumberInput from './NumberInput'
+
 function BarConfigCard(props){
    
     
@@ -12,15 +15,9 @@ function BarConfigCard(props){
                 for (let el = 0; el < props.Bars[i].stopNumber; el++) {
                    inputs.push(<div className="data-pair" key={el+1}>
                 
-                  <div className="data-input">
-                     <input type="text" placeholder="" id={i.toString()+el.toString()+"w"} onChange={(e)=>{props.handleInput(e)}}/> 
-                     <div>Value {el+1}</div> 
-                  </div>
-                  <div className="data-input">
-                    <input type="text" placeholder="" id ={i.toString()+el.toString()+"t"} onChange={(e)=>{props.handleInput(e)}}/>
-                    <div>Time {el+1}</div>
-                  </div>
                   
+                  <NumberInput handleInput={props.handleInput} el={el} i={i}></NumberInput>
+                  <PercentInput handleInput={props.handleInput} el={el} i={i}></PercentInput>
                 </div>)}
         return inputs
     }
@@ -30,12 +27,9 @@ function BarConfigCard(props){
                                
            <BarNameInput barID={props.barID} handleConfig={props.handleConfig}></BarNameInput>
             <ColorInput barID={props.barID} handleConfig={props.handleConfig}></ColorInput>
-           
-            <div className="card-stop">
-                <div>Nº of Stops</div> 
-                <InputWithButtons title={""} handle={props.handleConfig} ident={props.barID.toString()+"s"}></InputWithButtons>
+        
+                <InputWithButtons title={"Nº of Stops"} handle={props.handleConfig} ident={props.barID.toString()+"s"} iball="Values to be shown at specific times of the animation"></InputWithButtons>
                 
-            </div>
             {createInputs(props.barID)}
             
             </div>

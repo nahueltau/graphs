@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Iball from './Iball'
 function InputWithButtons(props){
     
     function changeVal(val){
@@ -21,13 +21,18 @@ function InputWithButtons(props){
 }
    
 return(
+    <div className="card-stop">
+        <div>{props.title}</div>
     <div className="input-with-buttons">
-                <span>{props.title}</span>
+            
                     <div className="circle-button" onClick={()=>{changeVal(-1)}}>-</div>
-                    <input readOnly type="text" placeholder="0" id={props.ident} onChange={(e)=>{props.handle(e)}}/>
+                    <input readOnly type="text" className="small-number-input" placeholder="0" id={props.ident} onChange={(e)=>{props.handle(e)}}/>
                     <div className="circle-button" onClick={()=>{changeVal(1)}}>+</div>
+                    <Iball>{props.iball}</Iball>
                 </div>
- 
+                
+
+ </div>
 )
 
 }

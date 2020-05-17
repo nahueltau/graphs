@@ -43,7 +43,7 @@ function Bars({bars}){
     
     return(
         <div className="barContainer" style={{height:(bars.length)*100+"px"}}>
-       
+       <div className="title-small">Graphs</div>
         {bars.map(bar => {
             return( 
                 <div key={bar.key} className="bar" style={{width: bar.currentValue*createMultiplicator(bars) + "px", top:position(bars, bar)*100, backgroundColor:bar.color}} >
